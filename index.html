@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cloud Arcade</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #121212; color: #fff; text-align: center; margin: 0; padding: 20px; }
+        h1 { color: #00ff88; font-size: 2.5rem; margin-bottom: 5px; }
+        p { color: #aaa; margin-top: 0; }
+        .search-bar { padding: 14px 20px; width: 85%; max-width: 450px; border-radius: 30px; border: 1px solid #444; background: #1e1e1e; color: #fff; margin: 30px auto; display: block; font-size: 1.1rem; outline: none; transition: border-color 0.2s; }
+        .search-bar:focus { border-color: #00ff88; }
+        .arcade-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 20px; max-width: 1300px; margin: 0 auto; }
+        .game-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px; text-decoration: none; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 90px; transition: transform 0.2s, border-color 0.2s, background 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .game-card:hover { transform: translateY(-4px); border-color: #00ff88; background: #222222; }
+        .game-title { font-weight: 600; font-size: 1.15rem; word-break: break-word; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <h1>The Cloud Arcade</h1>
+    <p>Instantly playing 2 games</p>
+    <input type="text" id="search" class="search-bar" placeholder="🔍 Search games instantly..." oninput="filterGames()">
+    <main class="arcade-grid">
+        <a href="games/1-on-1-soccer.html" class="game-card"><span class="game-title">1 On 1 Soccer</span></a>
+        <a href="games/1-on-1-tennis.html" class="game-card"><span class="game-title">1 On 1 Tennis</span></a>
+    </main>
+    <script>
+        function filterGames() {
+            const q = document.getElementById("search").value.toLowerCase();
+            document.querySelectorAll(".game-card").forEach(c => {
+                c.classList.toggle("hidden", !c.textContent.toLowerCase().includes(q));
+            });
+        }
+    </script>
+</body>
+</html>
